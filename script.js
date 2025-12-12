@@ -8,6 +8,13 @@ function Book(title, author, pages) {
 
 }
 
+const book1 = new Book("football", "messi","10");
+
+const book3 = new Book("Sapiens", "Yuval Noah Harari", 443);
+
+const book4 = new Book("The Code Book", "Simon Singh", 432);
+
+myLibrary.push(book1, book3, book4);
 
 function addBooks(title, author, pages) {
      const book = new Book(title, author, pages);
@@ -20,26 +27,29 @@ function displayBooks() {
     const container = document.getElementById('container-id');
     container.textContent = "";
 
-    for (const book of myLibrary) {
-    const booksCard = document.createElement('div');
+    
+for (const book of myLibrary) {
+    const booksCard = document.createElement('div'); 
     booksCard.setAttribute('id', book.id);
     booksCard.classList.add('card');
 
     const titleDiv = document.createElement('div');
     titleDiv.textContent = `title: ${book.title}`;
     titleDiv.classList.add('title-class');
-    bookscard.appendChild(titleDiv);
+    booksCard.appendChild(titleDiv); 
 
     const authorDiv = document.createElement('div');
     authorDiv.textContent = `author: ${book.author}`;
     authorDiv.classList.add('author-class')
-    bookscard.appendChild(authorDiv);
+    booksCard.appendChild(authorDiv);
 
     const pageDiv = document.createElement('div');
     pageDiv.textContent = `pages: ${book.pages}`;
     pageDiv.classList.add('page-class');
-    bookscard.appendChild(pageDiv);
+    booksCard.appendChild(pageDiv); 
 
     container.appendChild(booksCard);
 }
 }
+
+displayBooks();
