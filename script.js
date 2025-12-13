@@ -1,12 +1,16 @@
 let myLibrary = [];
 
-function Book(title, author, pages) {
+function Book(title, author, pages, read = false) { 
     this.id = crypto.randomUUID();
-    this.title = title;   
-    this.author = author; 
-    this.pages = pages; 
-
+    this.title = title;    
+    this.author = author;  
+    this.pages = pages;
+    this.read = read;
 }
+
+Book.prototype.toggleReadStatus = function() {
+    this.read = !this.read;
+};
 
 const book1 = new Book("football", "messi","10");
 
@@ -53,6 +57,16 @@ for (const book of myLibrary) {
     pageDiv.textContent = `pages: ${book.pages}`;
     pageDiv.classList.add('page-class');
     booksCard.appendChild(pageDiv); 
+
+    const readButton = document.createElement('button');
+        readButton.textContent = book.read ? "Read: YES" : "Read: NO"; 
+        readButton.classList.add(book.read ? 'read-status-yes' : 'read-status-no');
+
+        readButton.addEventListener('click', function() {
+            book.toggleReadStatus();
+            displayBooks(); 
+        });
+    booksCard.appendChild(readButton);
 
     const remove = document.createElement('button');
     remove.classList.add('submit');
