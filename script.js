@@ -19,18 +19,24 @@ myLibrary.push(book1, book3, book4);
 function addBooks(title, author, pages) {
      const book = new Book(title, author, pages);
      myLibrary.push(book);
+     
+}
 
+function removeBook(get){
+ myLibrary = myLibrary.filter(book => book.id !== get);
+ displayBooks();
 }
 
 function displayBooks() {
 
     const container = document.getElementById('container-id');
     container.textContent = "";
-
+  
     
 for (const book of myLibrary) {
+
     const booksCard = document.createElement('div'); 
-    booksCard.setAttribute('id', book.id);
+    booksCard.setAttribute('data-id', book.id);
     booksCard.classList.add('card');
 
     const titleDiv = document.createElement('div');
@@ -47,6 +53,16 @@ for (const book of myLibrary) {
     pageDiv.textContent = `pages: ${book.pages}`;
     pageDiv.classList.add('page-class');
     booksCard.appendChild(pageDiv); 
+
+    const remove = document.createElement('button');
+    remove.classList.add('submit');
+    remove.textContent = "remove";
+    booksCard.appendChild(remove);
+    remove.addEventListener('click',function(){
+    getID = booksCard.getAttribute('data-id');
+    removeBook(getID);
+    } );
+   
 
     container.appendChild(booksCard);
 }
