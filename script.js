@@ -53,3 +53,22 @@ for (const book of myLibrary) {
 }
 
 displayBooks();
+
+const form = document.getElementById('add-book-form');
+form.addEventListener('submit', function(event){
+
+    event.preventDefault();
+
+    const title = document.getElementById('title');
+    const titleValue = title.value;
+
+    const author = document.getElementById('author');
+    const authorValue = author.value;
+
+    const pages = document.getElementById('pages');
+    const pageValue = pages.value;
+
+    addBooks(titleValue, authorValue, pageValue);
+  
+    displayBooks();
+})
